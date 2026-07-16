@@ -1,0 +1,166 @@
+*{
+  box-sizing:border-box;
+}
+
+html,body{
+  margin:0;
+  min-height:100%;
+  background:#1d0b03;
+}
+
+body{
+  min-height:100svh;
+  display:grid;
+  place-items:center;
+  overflow-x:hidden;
+}
+
+.page{
+  width:100%;
+  min-height:100svh;
+  display:grid;
+  place-items:center;
+  padding:0;
+}
+
+.poster{
+  position:relative;
+  width:min(100vw,calc(100svh * 1.5));
+  aspect-ratio:3/2;
+  overflow:hidden;
+  background:#4e230d;
+}
+
+.poster-art{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+
+.video-slot{
+  position:absolute;
+  left:24.35%;
+  top:39.45%;
+  width:48.15%;
+  height:40.75%;
+  overflow:hidden;
+  border-radius:1.1vw;
+  background:#000;
+  box-shadow:
+    0 0 0 .18vw rgba(20,20,20,.95),
+    0 .7vw 1.7vw rgba(0,0,0,.42);
+}
+
+.video-slot video{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#000;
+}
+
+.play-recap{
+  position:absolute;
+  left:50%;
+  bottom:5.45%;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:.75em;
+  min-width:25%;
+  padding:.9em 1.6em;
+  border:.16em solid rgba(255,255,255,.94);
+  border-radius:999px;
+  background:linear-gradient(180deg,#182451,#0d1431);
+  color:#fff;
+  font-family:Arial,sans-serif;
+  font-size:clamp(.72rem,1.5vw,1.55rem);
+  font-weight:800;
+  letter-spacing:.035em;
+  text-transform:uppercase;
+  cursor:pointer;
+  box-shadow:
+    0 0 .45em #fff1a7,
+    0 0 1.15em rgba(255,190,77,.86),
+    0 .55em 1.2em rgba(0,0,0,.45);
+}
+
+.play-recap span{
+  display:grid;
+  place-items:center;
+  width:1.9em;
+  height:1.9em;
+  border:.12em solid #fff;
+  border-radius:50%;
+}
+
+.play-recap:hover{
+  transform:translateX(-50%) translateY(-2px);
+}
+
+.play-recap:active{
+  transform:translateX(-50%);
+}
+
+.play-recap.is-hidden{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+@media(max-width:720px){
+  body{
+    align-items:start;
+  }
+
+  .page{
+    min-height:auto;
+  }
+
+  .poster{
+    width:100vw;
+    margin-top:max(0px,env(safe-area-inset-top));
+  }
+
+  .video-slot{
+    border-radius:2vw;
+  }
+}
+
+@media(orientation:landscape) and (max-height:650px){
+  body{
+    background:#000;
+    overflow:hidden;
+  }
+
+  .poster{
+    width:100vw;
+    height:100dvh;
+    aspect-ratio:auto;
+    background:#000;
+  }
+
+  .poster-art,
+  .play-recap{
+    display:none;
+  }
+
+  .video-slot{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border-radius:0;
+    box-shadow:none;
+  }
+
+  .video-slot video{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+  }
+}
